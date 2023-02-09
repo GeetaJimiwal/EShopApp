@@ -31,6 +31,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddControllers();
+
+builder.Services.AddTransient<IUseService, UserService>();
+builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ISecurityService, SecurityService>();
 builder.Services.AddTransient<ILoginRepository, LoginRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
