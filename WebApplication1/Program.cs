@@ -9,7 +9,7 @@ using WebApplication1.Services;
 using WebApplication1.Repository;
 using System.Configuration;
 using Serilog;
-
+using SendGrid.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
  Log.Logger = new LoggerConfiguration().
@@ -37,11 +37,23 @@ builder.Services.AddControllers();
 builder.Services.AddTransient<IUseService, UserService>();
 builder.Services.AddTransient<IProductService, ProductService>();
 builder.Services.AddTransient<ISecurityService, SecurityService>();
+builder.Services.AddTransient<IUserCreadentialService, UserCreadentialService>();
 builder.Services.AddTransient<ILoginRepository, LoginRepository>();
 builder.Services.AddTransient<IProductRepository, ProductRepository>();
 builder.Services.AddTransient<IUserRepository, UserRepository>();
 builder.Services.AddTransient<IUserCreadential, UserCreadentialRepository>();
 builder.Services.AddTransient<IMailService, MailService>();
+ builder.Services.AddTransient<ICartItemInterface, CartItemRepository>();
+builder.Services.AddTransient<ICartItemService, CartItemService>();
+builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddTransient<ICategoryService, CategoryService>();
+
+
+builder.Services.AddSendGrid(options =>
+    options.ApiKey = builder.Configuration.GetValue<string>("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")
+                     ?? throw new Exception("The 'SendGridApiKey' is not configured")
+);
+builder.Services.AddTransient<IEmailSender, SendGridEmailSender>();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

@@ -4,13 +4,13 @@ namespace WebApplication1.Services
 {
     public interface IUseService
     {
-        public User GetById(int id);
-        public List<User> GetAll();
-        public User Create(User user);
+         User GetById(int id);
+         List<User> GetAll();
+          User Create(User user);
 
-        User Authenticate(string userName, string password);
+        public User Authenticate(string userName, string password);
         string EncryptedPassword(string password);
-   /*     object GetByEmail(string email);*/
-        /*User GetByEmail(string email);*/
+        /*     object GetByEmail(string email);*/
+        User GetByEmail(string email);
     }
 }

@@ -12,18 +12,11 @@ namespace WebApplication1.Controllers
         {
             this.mailService = mailService;
         }
-        [HttpPost("Send")]
-        public async Task<IActionResult> Send([FromBody] MailRequest request)
+        [HttpPost]
+        public IActionResult SendEmail(EmailDto request)
         {
-            try
-            {
-                await mailService.SendEmailAsync(request);
-                return Ok();
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
+            mailService.SendEmail(request);
+            return Ok();
         }
     }
 }

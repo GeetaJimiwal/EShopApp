@@ -3,47 +3,54 @@ using WebApplication1.Db;
 using WebApplication1.Model;
 using WebApplication1.Repository;
 using Microsoft.AspNetCore.Authorization;
+using WebApplication1.Services;
+using AutoMapper;
+using WebApplication1.EntityModel;
 
 namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CreadentialController : Controller
-    {
-        private IUserCreadential _userCreadential;
+    { 
         private IUserRepository userRepository;
-
-        public CreadentialController(IUserCreadential _userCreadential, IUserRepository userRepository)
+        private IUserCreadentialService userCreadentialService;
+        private readonly IMapper mapper;
+        public CreadentialController(IUserCreadentialService userCreadentialService,IMapper mapper, IUserRepository userRepository)
         {
-            this._userCreadential = _userCreadential;
+            this.userCreadentialService = userCreadentialService;
             this.userRepository = userRepository;
+            this.mapper = mapper;
+
         }
         [HttpGet]
 
-        public IEnumerable<UserCreadential> Get()
+        public IEnumerable<UserCreadentialEntity> Get()
         {
-            var users = _userCreadential.GetAll();
-            return users;
+            var users = userCreadentialService.GetAll();
+            var userentity = mapper.Map<List<UserCreadentialEntity>>(users);
+            return userentity;
         }
         [HttpGet("{id}")]
 
         public UserCreadential Get (int id)
         {
-            var users = _userCreadential.GetById(id);
+            var users = userCreadentialService.GetById(id);
             return users;
         }
         [HttpPost]
         [AllowAnonymous]
         [Produces("application/json")]
 
-        public async void Post (UserCreadential userCreadential)
+        public async void Post (UserCreadentialEntity  Creadential)
         {
-            var encryptedpassword = userRepository.EncryptedPassword(userCreadential.Password);
-            userCreadential.Password = (string)encryptedpassword;
-            _userCreadential.Create(userCreadential);
+            var encryptedpassword = userCreadentialService.EncryptedPassword(Creadential.Password);
+            Creadential.Password = (string)encryptedpassword;
+            var userentity =  mapper.Map<UserCreadential>(Creadential);
+            userCreadentialService.Create(userentity);
 
         }
-        [HttpPut]
+       /* [HttpPut]
 
         public async void Put(string email, string password)
         {
@@ -52,7 +59,7 @@ namespace WebApplication1.Controllers
             _userCreadential.Create(updatedPassword);
             
 
-        }
+        }*/
         
 
     }

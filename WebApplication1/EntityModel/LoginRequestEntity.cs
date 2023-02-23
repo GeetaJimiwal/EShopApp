@@ -1,9 +1,8 @@
-﻿namespace WebApplication1.Model
+﻿namespace WebApplication1.EntityModel
 {
-    public class LoginRequest 
+    public class LoginRequestEntity
     {
         public string Name { get; set; }
         public string Password { get; set; }
-       
     }
 }

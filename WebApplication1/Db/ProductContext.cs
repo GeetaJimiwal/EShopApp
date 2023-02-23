@@ -16,10 +16,12 @@ namespace WebApplication1.Db
          : base(options)
         {
         }
-        public DbSet<Model.Product> Product { get; set; }
+        public DbSet<Model.Product> Products { get; set; }
         
         public DbSet<Model.User> User { get; set; }
         public DbSet<Model.UserCreadential>userCreadential { get; set; }
+        public DbSet<Model.CartItem>CartItem { get; set; }
+        public DbSet<Model.Category> Category { get; set; }
 
          
     }

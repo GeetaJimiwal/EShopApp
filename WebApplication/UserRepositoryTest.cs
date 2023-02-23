@@ -22,8 +22,8 @@ namespace WebApplication
                       Name="Geeta",
                       Email="Geetabora@Xcdify.com",
                       IsActive=true,
-                      CreatedBy=null,
-                      UpdatedBy=null,
+                      CreatedBy=1,
+                      UpdatedBy=1,
                   }
               };
             var context = new Mock<ProductContext>();
@@ -51,8 +51,8 @@ namespace WebApplication
                       Name="Geeta",
                       Email="Geetabora@Xcdify.com",
                       IsActive=true,
-                      CreatedBy=null,
-                      UpdatedBy=null,
+                      CreatedBy=1,
+                      UpdatedBy=1,
                   },
                     new User
                   {
@@ -60,8 +60,8 @@ namespace WebApplication
                       Name="Ram",
                       Email="ram@Xcdify.com",
                       IsActive=true,
-                      CreatedBy=null,
-                      UpdatedBy=null,
+                      CreatedBy=1,
+                      UpdatedBy=1,
                   },
               };
             var context = new Mock<ProductContext>();
@@ -85,8 +85,8 @@ namespace WebApplication
                       Name = "Geeta",
                       Email = "Geetabora@Xcdify.com",
                       IsActive = true,
-                      CreatedBy = null,
-                      UpdatedBy = null,
+                      CreatedBy = 1,
+                      UpdatedBy = 1,
                   };
                   
               

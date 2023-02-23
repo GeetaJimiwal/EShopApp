@@ -4,8 +4,10 @@ namespace WebApplication1.Services
 {
     public interface IProductService
     {
-        public Product GetById(int id);
-        public List<Product> GetAll();
-        public Product Create(Product product);
+         Product GetById(int id);
+         List<Product> GetAll();
+          Product Create(Product product);
+        List<Product> GetCategory(string product);
+        /*  Product GetByCategory(Category category);*/
     }
 }

@@ -43,9 +43,6 @@ namespace WebApplication1.Controllers
         [HttpPost("/signin")]
         [AllowAnonymous]
         [Produces("application/json")]
-
-
-
         public async Task<IResult> SignIn(LoginRequest request)
         {
 

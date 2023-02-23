@@ -4,6 +4,6 @@ namespace WebApplication1.Services
 {
     public interface IMailService
     {
-        Task SendEmailAsync(MailRequest mailRequest);
+         void SendEmail(EmailDto request);
     }
 }

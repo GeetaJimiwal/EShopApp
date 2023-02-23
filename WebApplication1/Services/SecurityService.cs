@@ -13,25 +13,20 @@ namespace WebApplication1.Services
     public class SecurityService : ISecurityService
     {
         private readonly IConfiguration _configuration;
-        private readonly ILoginRepository loginRepository;
         private readonly IUserRepository userRepository;
-
+    
         
-        public SecurityService(IConfiguration configuration,ILoginRepository loginRepository,IUserRepository userRepository)
+        public SecurityService(IConfiguration configuration,IUserRepository userRepository)
         {
             _configuration = configuration;
-           this.loginRepository = loginRepository;
+          
            this.userRepository = userRepository;
         }
-        public (bool isValid, string token) ValidateUser()
-        {
-            throw new NotImplementedException();
-        }
-
+        
         (bool, string) ISecurityService.ValidateUser(LoginRequest loginDetails)
         {
             var encrypted = userRepository.EncryptedPassword(loginDetails.Password);
-            loginDetails.Password = encrypted ;
+            loginDetails.Password = encrypted;
             var user = userRepository.Authenticate(loginDetails.Name, loginDetails.Password);
             if (user == null)
             {
@@ -65,7 +60,5 @@ namespace WebApplication1.Services
             var stringToken = tokenHandler.WriteToken(token);
             return (true, stringToken);
         }
-        
-
     }
 }

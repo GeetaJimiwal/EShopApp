@@ -1,7 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System.Text;
 using WebApplication1.Db;
+using WebApplication1.EntityModel;
 using WebApplication1.Model;
+using WebApplication1.Services;
 
 namespace WebApplication1.Repository
 {
@@ -9,33 +12,53 @@ namespace WebApplication1.Repository
     {
         private readonly ProductContext dbContext;
         private readonly DbSet<User> user;
-        public UserRepository(ProductContext dbContext)
+      
+        public UserRepository(ProductContext dbContext )
         {
             this.dbContext = dbContext;
             user = dbContext.Set<User>();
+             
         }
 
         public User Authenticate(string userName, string password)
         {
-            return dbContext.User.FirstOrDefault(x => x.Name == userName && x.Password == password);
+            var authenticateuser = dbContext.User.FirstOrDefault(x => x.Name == userName && x.Password == password);
+            return authenticateuser;
         }
 
         public User Create(User user)
         {
-             dbContext.Add(user);
-            dbContext.SaveChanges();
+            /*var isEmailAlreadyExists = dbContext.User.Any(x => x.Email == user.Email);
+
+            if (!isEmailAlreadyExists)
+            {
+                dbContext.Add(user);
+
+            }
+            else
+            {
+                return null;
+            }*/
+            dbContext.Add(user);
+            try
+            {
+                dbContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
             return user;
+            
+          
         }
 
         public List<User> GetAll()
         {
-            return this.user.AsQueryable().ToList();
+            return user.AsQueryable().ToList();
         }
 
-        public object GetByEmail(string email)
-        {
-            return dbContext.User.FirstOrDefault(x => x.Email == email);
-        }
+        
 
         /*   public string GetByEmail(string email)
            {
@@ -60,5 +83,11 @@ namespace WebApplication1.Repository
                 return ecryptedPassword;
             }
         }
+
+        public User GetByEmail(string email)
+        {
+            return dbContext.User.FirstOrDefault(x => x.Email == email);
+        }
+
     }
 }

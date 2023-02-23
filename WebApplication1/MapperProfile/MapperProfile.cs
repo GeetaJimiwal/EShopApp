@@ -9,9 +9,12 @@ namespace WebApplication1.MapperProfile
         public MapperProfile()
         {
             CreateMap<User, UserEntity>().ReverseMap();
-            CreateMap<Product, ProductEntity>().ReverseMap();
-
-            CreateMap<EntityModel.UserCreadentialEntity, Model.UserCreadential>();
+            CreateMap<ProductEntity,Product>().ReverseMap();
+            CreateMap<LoginRequest, LoginRequestEntity>().ReverseMap();
+            CreateMap<EntityModel.UserCreadentialEntity, Model.UserCreadential>().ReverseMap();
+            CreateMap<EntityModel.CartItemEntity, Model.CartItem>();
+            CreateMap<CartItem,CartItemEntity >();
+            CreateMap<EntityModel. CategoryEntity, Model.Category>().ReverseMap();
 
         }
     }

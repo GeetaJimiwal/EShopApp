@@ -26,8 +26,8 @@ namespace WebApplication
                     Email="kjhdjksd",
                     Password="dd",
                     IsActive=true,
-                    CreatedBy=null,
-                    UpdatedBy=null,
+                    CreatedBy=1,
+                    UpdatedBy=1,
                     UserId=1,
                 }
             };
@@ -57,8 +57,8 @@ namespace WebApplication
                     Email="kjhdjksd",
                     Password="dd",
                     IsActive=true,
-                    CreatedBy=null,
-                    UpdatedBy=null,
+                    CreatedBy=1,
+                    UpdatedBy=1,
                     UserId=1,
                 }
             };
@@ -85,8 +85,8 @@ namespace WebApplication
                        Email = "kjhdjksd",
                        Password = "dd",
                        IsActive = true,
-                       CreatedBy = null,
-                       UpdatedBy = null,
+                       CreatedBy = 1,
+                       UpdatedBy = 1,
                        UserId = 1,
                    };
 

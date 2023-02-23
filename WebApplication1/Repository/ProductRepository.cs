@@ -22,9 +22,24 @@ namespace WebApplication1.Repository
         {
             return this.products.AsQueryable().ToList();
         }
+
+        /*public Product GetByCategory(Category category)
+        {
+             
+
+
+            return dbContext.Products.FirstOrDefault(x =>x.Category);
+        }*/
+
         public Product GetById(int id)
         {
             return products.Find(id);
+        }
+
+        public List<Product> GetCategory(string product)
+        {
+            var cardDatabyID = dbContext.Products.Where(d => d.Category == product).ToList();
+            return cardDatabyID;
         }
     }
 }

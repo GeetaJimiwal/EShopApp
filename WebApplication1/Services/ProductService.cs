@@ -15,8 +15,8 @@ namespace WebApplication1.Services
         public Product Create(Product product)
         {
              
-            product.Category = "tshirt";
-            product.Quantity = 1;
+             
+       
             product= _repository.Create(product);
             return product;
         }
@@ -27,10 +27,22 @@ namespace WebApplication1.Services
             return products;
         }
 
+       /* public Product GetByCategory(Category category)
+        {
+             var product = _repository.GetByCategory(category);
+            return product;
+        }*/
+
         public Product GetById(int id)
         {
             var product = _repository.GetById(id);
             return product;
+        }
+
+       public List<Product> GetCategory(string product)
+        {
+            var category = _repository.GetCategory(product);
+            return category;
         }
     }
 }
